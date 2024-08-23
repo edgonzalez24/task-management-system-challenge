@@ -1,0 +1,18 @@
+# Version
+version: '3'
+
+# Services
+services:
+  # Database
+  db:
+    image: postgres:14.3 #postgress version
+    restart: always #restart database everytime it crashes
+    ports:
+      - "5432:5432" #expose port 5432 to the host
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER} # Superuser name (e.g., 'postgres')
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}  # Superuser password (e.g., 'your_password')
+      POSTGRES_DB: ${POSTGRES_DB} # Name of the database to create (e.g., 'your_database')
+    container_name: tmsdb
+    volumes:
+      - ./postgres:/var/lib/postgresql/data #mount volume in postgres folder
